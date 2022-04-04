@@ -3,19 +3,20 @@ import sys
 
 def main():
     wiki.set_lang("ru")
-    arr = sys.argv[1:]
+    articles = sys.argv[1:]
 
-    for i in range(len(arr)):
+    for idx, article in enumerate(articles):
         try:
-            string = arr[i].title()
-            ny = wiki.page(arr[i])
+            name = article.title()
+            title = wiki.page(article)
             
-            file = open(f"{arr[i]}.txt", "+a")
-            file.write(ny.content)
+            file = open(f"{article}.txt", "+a")
+            file.write(title.content)
             file.close()
-            print(f"{string}\t\033[32mfound\033[0m")
+            print(f"{name}\t\033[32mfound\033[0m")
+
         except:
-            print(f"{string}\t\033[31mnot\033[0m")
+            print(f"{name}\t\033[31mnot\033[0m")
 
 if __name__ == "__main__":
     main()
